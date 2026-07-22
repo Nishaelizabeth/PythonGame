@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Nunito', system-ui, sans-serif;
+  background: #0b1026;
+  color: #f8fafc;
+  overflow-x: hidden;
+}
+
+.font-display {
+  font-family: 'Baloo 2', system-ui, sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#8b5cf6, #38bdf8);
+  border-radius: 999px;
+}
+
+@layer components {
+  .glass {
+    background: rgba(20, 26, 58, 0.55);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .glass-strong {
+    background: rgba(20, 26, 58, 0.82);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .btn-glow {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 font-display font-bold text-white transition-transform;
+    background-image: linear-gradient(120deg, #8b5cf6, #6d28d9, #38bdf8);
+    background-size: 200% 200%;
+    box-shadow: 0 10px 30px -6px rgba(139, 92, 246, 0.7);
+  }
+  .btn-glow:hover {
+    animation: shimmer 3s ease infinite;
+  }
+  .text-stroke {
+    -webkit-text-stroke: 2px rgba(11, 16, 38, 0.35);
+  }
+  .no-select {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
+/* Gradient utility text */
+.gradient-text {
+  background: linear-gradient(120deg, #fbbf24, #fb7185, #8b5cf6, #38bdf8);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 8s ease infinite;
+}
+
+.pixel-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}

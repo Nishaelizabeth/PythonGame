@@ -1,0 +1,60 @@
+// Achievement definitions. Some unlock automatically via completeLevel(),
+// others can be unlocked by specific in-game feats.
+export const ACHIEVEMENTS = [
+  {
+    id: 'first-steps',
+    name: 'First Steps',
+    emoji: '👣',
+    desc: 'Complete your very first level.',
+    color: 'from-emerald-400 to-teal-500',
+  },
+  {
+    id: 'rising-coder',
+    name: 'Rising Coder',
+    emoji: '🌱',
+    desc: 'Complete 3 levels of Python Quest.',
+    color: 'from-lime-400 to-green-500',
+  },
+  {
+    id: 'io-explorer',
+    name: 'I/O Explorer',
+    emoji: '🔡',
+    desc: 'Discover why input() always returns a string.',
+    color: 'from-sky-400 to-cyan-500',
+  },
+  {
+    id: 'logic-master',
+    name: 'Logic Master',
+    emoji: '🧭',
+    desc: 'Complete 6 levels and master decisions.',
+    color: 'from-violet-400 to-purple-600',
+  },
+  {
+    id: 'loop-legend',
+    name: 'Loop Legend',
+    emoji: '🔁',
+    desc: 'Complete 9 levels and conquer loops.',
+    color: 'from-orange-400 to-rose-500',
+  },
+  {
+    id: 'treasure-hunter',
+    name: 'Treasure Hunter',
+    emoji: '💎',
+    desc: 'Collect every treasure on Treasure Island.',
+    color: 'from-amber-400 to-yellow-500',
+  },
+  {
+    id: 'spellcaster',
+    name: 'Spellcaster',
+    emoji: '🪄',
+    desc: 'Graduate from the Wizard Academy of Functions.',
+    color: 'from-fuchsia-400 to-indigo-500',
+  },
+  {
+    id: 'grand-wizard',
+    name: 'Grand Wizard',
+    emoji: '👑',
+    desc: 'Complete all 12 kingdoms of Python Quest.',
+    color: 'from-yellow-300 via-amber-400 to-orange-500',
+  },
+]
