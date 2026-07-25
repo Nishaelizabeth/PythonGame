@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useGame } from '../context/GameContext.jsx'
+import { useAudio } from '../context/AudioContext.jsx'
 import FlowChart from '../components/FlowChart.jsx'
 import { CodePanel, LineByLine } from '../components/CodeBlock.jsx'
 import Confetti from '../components/Confetti.jsx'
@@ -45,6 +46,7 @@ function SectionTag({ children, color = 'text-quest-sky' }) {
 
 export default function ReflectionSection({ level, onContinueAdventure }) {
   const { name, allAchievements } = useGame()
+  const { playSound } = useAudio()
   const r = level.reflection
   const rewards = level.rewards
   const badge = rewards.badge ? allAchievements.find((a) => a.id === rewards.badge) : null
@@ -57,11 +59,17 @@ export default function ReflectionSection({ level, onContinueAdventure }) {
 
   const pick = (i) => {
     setChoice(i)
-    if (i === r.practice.answerIndex) setPracticeDone(true)
+    if (i === r.practice.answerIndex) {
+      setPracticeDone(true)
+      playSound('correct')
+    } else {
+      playSound('wrong')
+    }
   }
   const showAnswer = () => {
     setChoice(r.practice.answerIndex)
     setPracticeDone(true)
+    playSound('correct')
   }
 
   return (

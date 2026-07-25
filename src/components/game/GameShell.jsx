@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Confetti from '../Confetti.jsx'
 import { PlayIcon, CheckIcon, SparkleIcon } from '../Icons.jsx'
+import { useAudio } from '../../context/AudioContext.jsx'
 
 function IconBtn({ onClick, label, children, tone = 'default' }) {
   const tones = {
@@ -22,14 +23,17 @@ function IconBtn({ onClick, label, children, tone = 'default' }) {
 
 function Countdown({ onDone }) {
   const [n, setN] = useState(3)
+  const { playSound } = useAudio()
   useEffect(() => {
     if (n <= 0) {
+      playSound('start')
       const t = setTimeout(onDone, 500)
       return () => clearTimeout(t)
     }
+    playSound('countdown')
     const t = setTimeout(() => setN((x) => x - 1), 750)
     return () => clearTimeout(t)
-  }, [n, onDone])
+  }, [n, onDone, playSound])
 
   return (
     <div className="absolute inset-0 z-30 grid place-items-center bg-slate-950/60 backdrop-blur-sm">
@@ -75,6 +79,16 @@ export default function GameShell({
 }) {
   const playing = status === 'playing'
   const paused = status === 'paused'
+  const previousStatus = useRef(status)
+  const { playSound } = useAudio()
+
+  useEffect(() => {
+    if (previousStatus.current !== status) {
+      if (status === 'won') playSound('victory')
+      if (status === 'lost') playSound('failure')
+    }
+    previousStatus.current = status
+  }, [status, playSound])
 
   return (
     <div className="relative w-full">
